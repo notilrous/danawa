@@ -16,7 +16,7 @@ start_time = time.time()
 
 
 def load_first_category():
-    res_base = requests.get(base_URL, timeout=5, headers=headers, verify="./danawa.pem")
+    res_base = requests.get(base_URL, timeout=5, headers=headers, verify="./G2-RootCA1.pem")
     if res_base.status_code == 200:
         # 첫 카테고리
         soup = BeautifulSoup(res_base.text, 'html.parser')
@@ -49,8 +49,8 @@ def load_first_category():
 
 
 def load_second_category(code_num):
-    res_base = requests.get(base_URL, timeout=5, headers=headers, verify="./danawa.pem")
-    res_URL = requests.get(URL + code_num, timeout=5, headers=headers, verify="./danawa.pem")
+    res_base = requests.get(base_URL, timeout=5, headers=headers, verify="./G2-RootCA1.pem")
+    res_URL = requests.get(URL + code_num, timeout=5, headers=headers, verify="./G2-RootCA1.pem")
     if res_base.status_code == 200:
         # 두번째 카테고리
         soup1 = BeautifulSoup(res_URL.text, 'html.parser')
@@ -83,8 +83,8 @@ def load_second_category(code_num):
 
 
 def load_third_category(category_num, code_num):
-    res_base = requests.get(base_URL, timeout=5, headers=headers, verify="./danawa.pem")
-    res_URL = requests.get(URL + code_num, timeout=5, headers=headers, verify="./danawa.pem")
+    res_base = requests.get(base_URL, timeout=5, headers=headers, verify="./G2-RootCA1.pem")
+    res_URL = requests.get(URL + code_num, timeout=5, headers=headers, verify="./G2-RootCA1.pem")
     if res_base.status_code == 200:
         soup1 = BeautifulSoup(res_URL.text, 'html.parser')
         Last_category_value_list = soup1.findAll('div', {'class': 'box__sub-category', 'role': 'region'})
@@ -99,8 +99,7 @@ def load_third_category(category_num, code_num):
 
 def load_prod(link):
     slice_num = re.findall(r'\d+', link)
-    res = requests.get(final_URL + str(slice_num[0]), timeout=5, headers=headers, verify="./danawa.pem")
-
+    res = requests.get(final_URL + str(slice_num[0]), timeout=5, headers=headers, verify="./G2-RootCA1.pem")
     if res.status_code == 200:
         result_list = {}
         soup = BeautifulSoup(res.text, 'html.parser')
